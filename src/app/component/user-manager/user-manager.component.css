@@ -1,0 +1,40 @@
+.user-manager {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px;
+}
+mat-form-field {
+  width: 100%;
+  margin-right: 10px;
+}
+table {
+  width: 100%;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-top: 8px;
+}
+button[mat-icon-button] {
+  margin: 0 4px;
+  transition: background-color 0.3s ease;
+}
+
+button[mat-icon-button]:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+}
+
+mat-icon {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+button[color="accent"] mat-icon {
+  color: #e1a03d;
+}
+
+button[color="warn"] mat-icon {
+  color: red;
+}
+th,
+td {
+  font-size: 18px;
+}

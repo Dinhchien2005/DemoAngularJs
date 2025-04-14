@@ -1,0 +1,99 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Register</h2>
+      <p>Create a new account to get started.</p>
+    </div>
+
+    <form (ngSubmit)="register()" #registerForm="ngForm" class="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-wrapper">
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="user.email"
+            name="email"
+            required
+            placeholder="Enter your email"
+          />
+        </div>
+        <div
+          *ngIf="
+            registerForm.controls['email']?.invalid &&
+            registerForm.controls['email']?.touched
+          "
+          class="error-message"
+        >
+          Invalid email
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <div class="input-wrapper">
+          <input
+            type="password"
+            id="password"
+            [(ngModel)]="user.password"
+            name="password"
+            required
+            placeholder="Enter your password"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="input-wrapper">
+          <input
+            type="password"
+            id="confirmPassword"
+            [(ngModel)]="user.confirmPassword"
+            name="confirmPassword"
+            required
+            placeholder="Confirm your password"
+          />
+        </div>
+        <div
+          *ngIf="
+            user.password !== user.confirmPassword &&
+            registerForm.controls['confirmPassword']?.touched
+          "
+          class="error-message"
+        >
+          <i class="fas fa-exclamation-circle"></i>
+          Passwords do not match
+        </div>
+      </div>
+
+      <div class="form-options">
+        <div class="terms">
+          <input type="checkbox" id="terms" name="terms" required />
+          <label for="terms"
+            >I agree to the <a href="#">Terms of Service</a> and
+            <a href="#">Privacy Policy</a></label
+          >
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="
+          registerForm.invalid || user.password !== user.confirmPassword
+        "
+        class="login-button"
+      >
+        Register
+      </button>
+
+      <div class="register-link">
+        Already have an account? <a href="/login">Login now</a>
+      </div>
+    </form>
+
+    <div *ngIf="message" class="message-box">
+      <i class="fas fa-info-circle"></i>
+      {{ message }}
+    </div>
+  </div>
+</div>

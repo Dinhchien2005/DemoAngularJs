@@ -1,0 +1,62 @@
+<h2 mat-dialog-title style="margin-left: 5px">
+  {{ data?.selectedUser ? "Edit User" : "Add New User" }}
+</h2>
+
+<form #userForm="ngForm">
+  <mat-form-field style="width: 95%; margin-left: 5px">
+    <input
+      matInput
+      placeholder="Name"
+      [(ngModel)]="newUser.name"
+      name="name"
+      required
+      #nameRef="ngModel"
+    />
+    <mat-error *ngIf="nameRef.invalid && nameRef.touched">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field style="width: 95%; margin-left: 5px">
+    <input
+      matInput
+      type="email"
+      placeholder="Email"
+      [(ngModel)]="newUser.email"
+      name="email"
+      required
+      email
+      #emailRef="ngModel"
+    />
+    <mat-error *ngIf="emailRef.errors?.['required'] && emailRef.touched">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="emailRef.errors?.['email'] && emailRef.touched">
+      Invalid email format
+    </mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancelEdit()">Cancel</button>
+
+    <button
+      mat-raised-button
+      color="primary"
+      *ngIf="!data?.selectedUser"
+      (click)="userForm.form.valid && addUser()"
+      [disabled]="userForm.invalid"
+    >
+      Add User
+    </button>
+
+    <button
+      mat-raised-button
+      color="accent"
+      *ngIf="data?.selectedUser"
+      (click)="userForm.form.valid && updateUser()"
+      [disabled]="userForm.invalid"
+    >
+      Save
+    </button>
+  </div>
+</form>
