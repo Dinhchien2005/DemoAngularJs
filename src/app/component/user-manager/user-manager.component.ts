@@ -1,15 +1,31 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { UserFormModalComponent } from "../user-form-modal/user-form-modal.component";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
-import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { MatTableModule } from "@angular/material/table";
+import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
+import { CommonModule } from "@angular/common";
 import { UserService } from "../../services/user.service";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: "app-user-manager",
+  standalone: true,
   templateUrl: "./user-manager.component.html",
   styleUrls: ["./user-manager.component.css"],
+  imports: [
+    CommonModule,
+    MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSnackBarModule,
+    MatButtonModule,
+    MatIconModule,
+    UserFormModalComponent,
+  ],
 })
 export class UserManagerComponent implements OnInit {
   users: any[] = [];
@@ -19,7 +35,7 @@ export class UserManagerComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
-    private userService: UserService, // Inject UserService
+    private userService: UserService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}

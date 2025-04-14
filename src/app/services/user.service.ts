@@ -15,6 +15,9 @@ export class UserService {
     return this.http.get<any>(this.apiUrl);
   }
 
+  getUserById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
+  }
   // Thêm người dùng mới
   addUser(newUser: any): Observable<any> {
     return this.http.post<any>(this.apiUrl, newUser);
